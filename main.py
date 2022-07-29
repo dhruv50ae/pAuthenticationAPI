@@ -1,16 +1,15 @@
-# This is a sample Python script.
+import requests
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+APIKEY = "f58a6a7a3b81aa9698d51ad854c43102"
 
+MY_LAT = 51.510357
+MY_LONG = -0.116773
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+APIURL = "https://api.openweathermap.org/data/3.0/onecall"
+PARAMS = {
+    "lat": MY_LAT, "lon": MY_LONG, "appid": APIKEY
+}
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+response = requests.get(url=APIURL, params=PARAMS)
+response.raise_for_status()
+print(response.json())
